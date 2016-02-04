@@ -1,0 +1,113 @@
+// Focus states
+// ------------
+
+@mixin focus-glow {
+  -webkit-box-shadow: 0 0 3px 3px rgba($light-blue, 0.5);
+  -moz-box-shadow:    0 0 3px 3px rgba($light-blue, 0.5);
+  box-shadow:         0 0 3px 3px rgba($light-blue, 0.5);
+}
+
+// Border radius
+// -------------
+
+@mixin border-radius($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius:    $value;
+  border-radius:         $value;
+}
+
+// Clear fix
+// http://nicolasgallagher.com/micro-clearfix-hack/
+// (Simplified for IE8+ support, since we no longer support IE7)
+// ---------
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Buttons
+// -------
+
+@mixin button {
+  height: $field-height;
+  margin: 0;
+  padding: 0 14px;
+  font-size: 1.3em;
+  line-height: $field-height;
+  color: #FFF;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: $blue;
+  -webkit-transition: -webkit-transform 0.1s ease;
+  -moz-transition:    -moz-transform 0.1s ease;
+  -ms-transition:     -ms-transform 0.1s ease;
+  transition:         transform 0.1s ease;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  border: none;
+  @include border-radius(5px);
+  vertical-align: top;
+  display: inline-block;
+  &:hover,
+  &:focus {
+    -webkit-transform: scale(0.9);
+    -moz-transform:    scale(0.9);
+    -ms-transform:     scale(0.9);
+    transform:         scale(0.9);
+  }
+}
+
+// Placeholder text
+// ----------------
+
+// The following rules must be declared individually (can't be comma-separated)
+
+@mixin placeholder-color($color: $grey) {
+  &::-webkit-input-placeholder { color: $color; }
+  &:-moz-placeholder           { color: $color; }
+  &::-moz-placeholder          { color: $color; }
+  &:-ms-input-placeholder      { color: $color; }
+}
+
+// Form fields
+// -----------
+
+@mixin form-element {
+  height: $field-height;
+  padding: 4px 6px;
+  line-height: normal;
+  vertical-align: middle;
+  border: 2px solid $grey;
+  @include border-radius(5px);
+  color: $grey;
+  background-color: #FFF;
+  display: inline-block;
+  // Remove inner shadows from fields in mobile Webkit browsers
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+}
+
+@mixin form-element-focus {
+  border-color: $light-blue;
+}
+
+@mixin form-element-error {
+  border-color: $red;
+  background-color: lighten($red, 35%);
+}
+
+@mixin form-element-error-focus {
+  border-color: $red;
+  background-color: #FFF;
+}

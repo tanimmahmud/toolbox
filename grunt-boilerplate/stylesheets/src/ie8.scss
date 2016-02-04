@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@import '_variables.scss';
+
+// IE8 does not support box-shadow
+
+a:focus,
+input:focus,
+button:focus,
+textarea:focus,
+.select-wrapper.focus {
+  outline: 2px solid lighten($light-blue, 25%);
+}
+
+// IE8 does not support the :checked pseudo-class, and Javascript polyfills
+// that we've tried to write haven't worked very well, so we're falling back
+// to the browser's default styling for checkboxes and radio buttons
+
+.field-checkbox input[type='checkbox'],
+.field-radio input[type='radio'] {
+  margin: 3px 0.5ex;
+  // This filter fixes a PNG alpha channel issue
+  -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)";
+  top: auto;
+  right: auto;
+  + label {
+    line-height: 1.35;
+    &:before {
+      display: none;
+    }
+  }
+}
+
+// 1x scale background images for IE8
+
+.select-wrapper {
+  background-image: asset-url("../../images/select-box-arrows-1x.png");
+}

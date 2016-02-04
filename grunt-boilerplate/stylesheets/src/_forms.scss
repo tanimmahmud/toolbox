@@ -1,0 +1,378 @@
+// Margins
+// -------
+
+form {
+  margin: 0;
+  padding: 0;
+}
+legend,
+fieldset,
+.field {
+  margin: 0 0 20px 0;
+  padding: 0;
+  border: 0;
+}
+// Groups of fields (checkboxes, radio buttons, dates, etc.)
+.field-group .field {
+  margin-bottom: 5px;
+}
+.field-group-date .field {
+  margin-bottom: 0;
+}
+
+// Normalize fonts
+// ---------------
+
+legend,
+label,
+input,
+button,
+select,
+.select-wrapper select,
+.select-text,
+textarea {
+  @include default-font;
+  font-size: 1em;
+  color: $grey;
+  // Fix font rendering problems in various browsers
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+// Form legend
+// -----------
+
+legend {
+  width: 100%;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: $blue;
+  display: block;
+}
+
+// Field labels
+// ------------
+
+label,
+.field-group legend {
+  margin: 0 0 3px 0;
+  font-size: 1em;
+  font-weight: bold;
+  color: $grey;
+  display: inline-block;
+}
+.field-group-checkbox legend,
+.field-group-radio legend {
+  margin-bottom: 6px;
+}
+
+// Info and error messages
+// -----------------------
+
+.field,
+.field-group {
+  .info,
+  .error {
+    margin: 5px 0 0 0;
+    font-size: 1em;
+    p {
+      margin: 0;
+    }
+  }
+  .info,
+  .info p {
+    color: $grey;
+  }
+  .error,
+  .error p {
+    color: $red;
+    font-weight: bold;
+  }
+}
+.global-error {
+  margin: 0 0 20px 0;
+  padding: 20px 10px;
+  color: #FFF;
+  font-weight: bold;
+  background-color: $red;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// Required field indicators
+// -------------------------
+
+.required {
+  color: $red;
+  font-style: normal;
+  font-weight: bold;
+}
+
+// ==========================================================================
+// Buttons and form controls
+// ==========================================================================
+
+// Buttons
+// -------
+
+button,
+input[type="button"],
+input[type="submit"],
+.button {
+  @include button;
+}
+
+// Text fields
+// -----------
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  width: 100%;
+  @include form-element;
+  &:focus {
+    @include form-element-focus;
+  }
+}
+textarea {
+  height: auto;
+}
+.field-with-errors {
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"] {
+    @include form-element-error;
+    &:focus {
+      @include form-element-error-focus;
+    }
+  }
+}
+
+// Checkboxes and radio buttons
+// ----------------------------
+
+.field-checkbox,
+.field-radio {
+  input {
+    vertical-align: top;
+  }
+  label {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+}
+
+// Select boxes
+// ------------
+
+select {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// Date select boxes
+// -----------------
+
+.field-group-date .field {
+  width: 32%;
+  margin-bottom: 0;
+  display: inline-block;
+  label {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    display: block;
+  }
+}
+
+// ==========================================================================
+// Checkbox and radio button background images
+// ==========================================================================
+
+// Labels must come after inputs, because we're relying on the CSS "+" selector
+
+.field-checkbox,
+.field-radio {
+  position: relative;
+}
+.field-checkbox input[type='checkbox'],
+.field-radio input[type='radio'] {
+  margin: 0;
+  padding: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  + label {
+    line-height: $checkbox-size; // If you want text to appear vertically aligned with box
+    cursor: pointer;
+    padding-left: $checkbox-size + 8px; // box width + box margin
+    &:before {
+      @include form-element;
+      content: "";
+      width: $checkbox-size;
+      margin-right: 8px;
+      padding: 0;
+      vertical-align: top;
+      background-image: url("../../images/checkmark.png");
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: $checkbox-size;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  // Bug: In Safari, clicking or tapping checkboxes and radio buttons does not
+  // give them focus - only tabbing with the keyboard will work. The previously
+  // focused element is blurred, but focus is not applied to a new element. See:
+  // http://blog.gauntface.co.uk/2013/12/09/focusing-on-the-web-today/
+  &:focus + label:before {
+    @include focus-glow;
+    @include form-element-focus;
+  }  
+  &:checked + label:before {
+    background-position: center (-($checkbox-size + $field-border));
+  }
+  &:focus:checked + label:before {
+    background-position: center (-($checkbox-size * 2 + $field-border));
+  }
+}
+.field-radio input[type='radio'] + label:before {
+  @include border-radius(50%);
+  background-image: url("../../images/radio-button-dot.png");
+}
+
+// Error states
+// ------------
+
+.field-checkbox.field-with-errors input[type='checkbox'],
+.field-radio.field-with-errors input[type='radio'] {
+  + label:before {
+    @include form-element-error;
+  }
+  &:focus + label:before {
+    @include form-element-error-focus;
+  }
+  &:checked + label:before {
+    background-position: center (-($checkbox-size * 3 + $field-border));
+  }
+  &:focus:checked + label:before {
+    background-position: center (-($checkbox-size * 4 + $field-border));
+  }
+}
+
+// ==========================================================================
+// Custom select boxes
+// ==========================================================================
+
+// Extra markup and classes added via custom-select-boxes.js
+
+// Select box background
+// ---------------------
+
+.select-wrapper {
+  @include form-element;
+  padding: 0;
+  background-image: url("../../images/select-box-arrows.png");
+  background-repeat: no-repeat;
+  background-position: right 0;
+  background-size: auto ($field-height * 4);
+  select {
+    -webkit-appearance: menulist-button;
+    background-color: #FFF;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+  }
+}
+.select-wrapper.focus {
+  @include focus-glow;
+  @include form-element-focus;
+  background-position: right (-($field-height));
+}
+.select-wrapper,
+.select-wrapper select,
+.select-text {
+  width: 100%;
+}
+.select-wrapper,
+.select-wrapper select {
+  cursor: pointer;
+}
+.select-wrapper select,
+.select-text {
+  height: $field-height - $field-border * 2;
+}
+.select-text {
+  border-right: 40px solid transparent; // Prevents text from extending over top of dropdown arrow
+  white-space: nowrap;
+}
+
+// Select box text
+// ---------------
+
+.select-text {
+  margin-top: -($field-height - $field-border);
+  padding-left: 10px;
+  line-height: $field-height - $field-border * 2;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Error state
+// -----------
+
+.field-with-errors {
+  .select-wrapper {
+    @include form-element-error;
+    background-position: right (-($field-height * 2));
+  }
+  .select-wrapper.focus {
+    @include form-element-error-focus;
+    background-position: right (-($field-height * 3));
+  }
+}
+
+// ==========================================================================
+// Form field placeholders
+// ==========================================================================
+
+input,
+textarea {
+  @include placeholder-color(lighten($grey, 35%));
+}
+.field-with-errors {
+  input,
+  textarea {
+    @include placeholder-color($grey);
+  }
+}
