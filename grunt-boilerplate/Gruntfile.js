@@ -27,6 +27,7 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'javascripts/src/jquery-1.11.3.min.js',
+          'javascripts/src/custom-select-boxes.js',
           'javascripts/src/main.js'
         ],
         dest: 'javascripts/dist/build.js'

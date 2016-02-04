@@ -35,35 +35,32 @@
 // Buttons
 // -------
 
-@mixin button {
-  height: $field-height;
+@mixin button($height: $field-height) {
+  height: $height;
   margin: 0;
   padding: 0 14px;
   font-size: 1.3em;
-  line-height: $field-height;
+  line-height: $height;
   color: #FFF;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
   background-color: $blue;
-  -webkit-transition: -webkit-transform 0.1s ease;
-  -moz-transition:    -moz-transform 0.1s ease;
-  -ms-transition:     -ms-transform 0.1s ease;
-  transition:         transform 0.1s ease;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition:    background-color 0.2s ease-in-out;
+  -ms-transition:     background-color 0.2s ease-in-out;
+  transition:         background-color 0.2s ease-in-out;
   -webkit-appearance: none;
   -moz-appearance:    none;
   appearance:         none;
   border: none;
-  @include border-radius(5px);
+  @include border-radius(0);
   vertical-align: top;
   display: inline-block;
   &:hover,
   &:focus {
-    -webkit-transform: scale(0.9);
-    -moz-transform:    scale(0.9);
-    -ms-transform:     scale(0.9);
-    transform:         scale(0.9);
+    background-color: $grey;
   }
 }
 
@@ -82,13 +79,13 @@
 // Form fields
 // -----------
 
-@mixin form-element {
-  height: $field-height;
+@mixin form-element($height: $field-height) {
+  height: $height;
   padding: 4px 6px;
   line-height: normal;
   vertical-align: middle;
   border: 2px solid $grey;
-  @include border-radius(5px);
+  @include border-radius(0);
   color: $grey;
   background-color: #FFF;
   display: inline-block;

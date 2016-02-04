@@ -148,12 +148,12 @@ li {
 // -----
 
 a {
-  color: $light-blue;
+  color: $blue;
   text-decoration: underline;
 }
 a:hover,
 a:focus {
-  color: darken($light-blue, 20%);
+  color: $light-blue;
   text-decoration: none;
 }
 
@@ -203,3 +203,17 @@ main {
   display: inline-block;
 }
 
+// Delete me
+// ---------
+
+body {
+  background-color: #DDD;
+  header,
+  main,
+  footer {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}

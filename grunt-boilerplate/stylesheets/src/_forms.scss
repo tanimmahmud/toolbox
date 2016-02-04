@@ -209,6 +209,7 @@ select {
     padding: 0;
     line-height: 0;
     text-indent: -9999px;
+    overflow: hidden;
     display: block;
   }
 }
@@ -223,8 +224,8 @@ select {
 .field-radio {
   position: relative;
 }
-.field-checkbox input[type='checkbox'],
-.field-radio input[type='radio'] {
+.field-checkbox input[type="checkbox"],
+.field-radio input[type="radio"] {
   margin: 0;
   padding: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -233,14 +234,15 @@ select {
   top: 0;
   right: 0;
   + label {
-    line-height: $checkbox-size; // If you want text to appear vertically aligned with box
+    line-height: $checkbox-size; // Vertically aligns text with box
     cursor: pointer;
-    padding-left: $checkbox-size + 8px; // box width + box margin
+    padding-left: $checkbox-size + $checkbox-margin;
     &:before {
       @include form-element;
       content: "";
       width: $checkbox-size;
-      margin-right: 8px;
+      height: $checkbox-size;
+      margin-right: $checkbox-margin;
       padding: 0;
       vertical-align: top;
       background-image: url("../../images/checkmark.png");
@@ -267,7 +269,7 @@ select {
     background-position: center (-($checkbox-size * 2 + $field-border));
   }
 }
-.field-radio input[type='radio'] + label:before {
+.field-radio input[type="radio"] + label:before {
   @include border-radius(50%);
   background-image: url("../../images/radio-button-dot.png");
 }
@@ -275,8 +277,8 @@ select {
 // Error states
 // ------------
 
-.field-checkbox.field-with-errors input[type='checkbox'],
-.field-radio.field-with-errors input[type='radio'] {
+.field-checkbox.field-with-errors input[type="checkbox"],
+.field-radio.field-with-errors input[type="radio"] {
   + label:before {
     @include form-element-error;
   }
