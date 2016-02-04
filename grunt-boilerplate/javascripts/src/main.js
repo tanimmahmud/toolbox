@@ -51,11 +51,11 @@ jQuery(document).ready(function($){
     event.preventDefault();
     if ($('.global-error').length > 0) {
       $('.global-error').remove();
-      $('.field').removeClass('field_with_errors');
+      $('.field').removeClass('field-with-errors');
       $('form > fieldset > .field, .field-group').find('.error').remove();
     } else {
       $('form > fieldset > legend').after('<div class="global-error"><p>Global error message</p></div>');
-      $('.field').addClass('field_with_errors');
+      $('.field').addClass('field-with-errors');
       $('form > fieldset > .field, .field-group').append('<p class="error">Inline error message</p>');
     }
   });
