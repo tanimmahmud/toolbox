@@ -1,0 +1,25 @@
+body {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+#skip-link {
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+  z-index: 80;
+}
+#skip-link:active,
+#skip-link:focus {
+  height: auto;
+  clip: auto;
+  overflow: visible;
+  position: static;
+}
+#skip-link:focus {
+  padding: 10px;
+  color: #FFF;
+  background-color: #000;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}

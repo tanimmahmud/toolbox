@@ -1,0 +1,33 @@
+.door-frame {
+  overflow: hidden;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+}
+.door {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+.door span {
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  backface-visibility: visible;
+}
+.door .back,
+.door .side {
+  display: none;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+.door.open {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}

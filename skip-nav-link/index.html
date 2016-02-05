@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Skip to main content demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a id="skip-link" href="#main">Skip to main content</a>
+
+<h1>Skip to main content demo</h1>
+<p>Press the tab key to reveal the "skip to main content" link.</p>
+
+<nav>
+  <p>Sample navigation</p>
+  <ul>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+  </ul>
+</nav>
+
+<div id="main" tabindex="-1">
+
+  <h2>According to the W3C spec, this is all that's required</h2>
+  <pre>
+    <code>
+      &lt;a href="#main"&gt;Skip to main content&lt;/a&gt;
+
+      &lt;div id="main"&gt;&lt;/div&gt;
+    </code>
+  </pre>
+
+  <h2>However, <a href="http://stackoverflow.com/questions/13047416/tabindex-or-focus-for-keyboard-navigation" target="_blank">there's a bug in Webkit browsers</a></h2>
+
+  <p>"The difference between visual focus and input focus is subtle. Visual focus is most often affected by scrolling. When you navigate to an element on the page using a hash, the browser scrolls that element into view, effectively changing the visual focus so you can read. If you use the up and down arrows, they interact with the scrollbar naturally. However, if you use tab to change focus then you end up scrolling back to the previous spot on the page. That’s because the input focus didn’t change along with the visual focus." - [<a href="http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links" target="_blank">Source article</a>]</p>
+
+  <h2>Solution</h2>
+  <p>Simply add <strong>tabindex="-1"</strong> to the target element (tested in IE8, IE9, IE10, Firefox 33, Chrome 38 and Safari 6.2)</p>
+  <pre>
+    <code>
+      &lt;a href="#main"&gt;Skip to main content&lt;/a&gt;
+
+      &lt;div id="main" <strong>tabindex="-1"</strong>&gt;&lt;/div&gt;
+    </code>
+  </pre>
+
+  <p>According to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#tabindex" target="_blank">MDN documentation</a>, "a negative tabindex value means that the element should be focusable, but should not be reachable via sequential keyboard navigation". This forces the element to receive both visual and input focus when its ID is appended to the URL.</p>
+
+  <p><strong>Note:</strong> If the anchor element is not the first link on the page, you should add <strong>tabindex="1"</strong> to make it the first keyboard navigable element.</p>
+  <pre>
+    <code>
+      &lt;a href="#main" <strong>tabindex="1"</strong>&gt;Skip to main content&lt;/a&gt;
+    </code>
+  </pre>
+
+  <h2>If all else fails…</h2>
+  <p>If your page contains Javascript which is interfering with the tab order, you should be able to correct this with additional Javascript</p>
+  <pre>
+    <code>
+      $('#skip-link').click(function() {
+        $('#main').attr('tabindex', -1).focus();
+      });
+    </code>
+  </pre>
+
+  <h2>What other people are doing</h2>
+  <ul>
+    <li><a href="http://webaim.org/media/scripts/main.js" target="_blank">WebAim is using Javascript</a> because, in addition to setting focus, they're also highlighting and animating elements, etc.</li>
+    <li>456 Berea Street hasn't even bothered to implement a workaround because <a href="http://www.456bereastreet.com/archive/201203/skip_links_and_other_in_page_links_in_webkit_browsers" target="_blank">they say it's the browser makers' responsibility</a> to fix this bug.</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

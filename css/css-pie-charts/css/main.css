@@ -1,0 +1,87 @@
+.pie {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.pie .wedge {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #FFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pie .wedge:before,
+.pie .wedge:after {
+  content: "";
+  width: 50px; /* width / 2 */
+  height: 100px;
+  background-color: #666;
+  position: absolute;
+  top: 0;
+}
+.pie .wedge:before {
+  -webkit-border-radius: 50px 0 0 50px; /* width / 2 */
+  -moz-border-radius: 50px 0 0 50px;
+  border-radius: 50px 0 0 50px;
+  -webkit-transform-origin: right center;
+  -moz-transform-origin: right center;
+  -ms-transform-origin: right center;
+  transform-origin: right center;
+  left: 0;
+}
+.pie .wedge:after {
+  -webkit-border-radius: 0 50px 50px 0; /* width / 2 */
+  -moz-border-radius: 0 50px 50px 0;
+  border-radius: 0 50px 50px 0;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  right: 0;
+}
+.pie .mask {
+  width: 96px; /* width - 4 */
+  height: 96px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 4px solid #666;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+.pie p {
+  width: 84px; /* width - 16 */
+  height: 84px;
+  margin: 0;
+  font-size: 2em;
+  line-height: 84px;
+  text-align: center;
+  color: #FFF;
+  background-color: #666;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+}
+
+/* Invert the colours when it's greater than 50% */
+
+.pie.over-50 .wedge {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background-color: #666;
+}
+.pie.over-50 .wedge:before,
+.pie.over-50 .wedge:after {
+  background-color: #FFF;
+}

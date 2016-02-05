@@ -1,0 +1,83 @@
+body {
+  margin: 20px;
+  padding: 0;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+/* Animation Demos */
+
+.demo {
+  height: 100px;
+  background-color: #DDD;
+  margin: 0 0 20px 0;
+  text-align: center;
+  position: relative;
+}
+.demo > div {
+  width: 50px;
+  height: 50px;
+  background-color: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Transition */
+
+#transition {
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  -moz-transition:    -moz-transform 0.5s linear;
+  -ms-transition:     -ms-transform 0.5s linear;
+  transition:         transform 0.5s linear;
+}
+#transition:hover {
+  -webkit-transform: scale(0.6) translateY(50%);
+  -moz-transform:    scale(0.6) translateY(50%);
+  -ms-transform:     scale(0.6) translateY(50%);
+  transform:         scale(0.6) translateY(50%);
+}
+
+/* Animation */
+
+#animation {
+  -webkit-animation: animation-example 10s linear 0s 1 normal forwards;
+  -moz-animation:    animation-example 10s linear 0s 1 normal forwards;
+  -ms-animation:     animation-example 10s linear 0s 1 normal forwards;
+  animation:         animation-example 10s linear 0s 1 normal forwards;
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
+  -ms-animation-play-state: running;
+  animation-play-state: running;
+}
+
+/* Must be repeated due to vendor prefixes */
+
+@-webkit-keyframes animation-example {
+  20%  { top: 0px;  left: 40%; }
+  40%  { top: 40px; left: 20%; }
+  60%  { top: 0px;  left: 60%; }
+  80%  { top: 40px; left: 40%; }
+  100% { top: 0px;  left: 80%; }
+}
+@-moz-keyframes animation-example {
+  20%  { top: 0px;  left: 40%; }
+  40%  { top: 40px; left: 20%; }
+  60%  { top: 0px;  left: 60%; }
+  80%  { top: 40px; left: 40%; }
+  100% { top: 0px;  left: 80%; }
+}
+@-ms-keyframes animation-example {
+  20%  { top: 0px;  left: 40%; }
+  40%  { top: 40px; left: 20%; }
+  60%  { top: 0px;  left: 60%; }
+  80%  { top: 40px; left: 40%; }
+  100% { top: 0px;  left: 80%; }
+}
+@keyframes animation-example {
+  20%  { top: 0px;  left: 40%; }
+  40%  { top: 40px; left: 20%; }
+  60%  { top: 0px;  left: 60%; }
+  80%  { top: 40px; left: 40%; }
+  100% { top: 0px;  left: 80%; }
+}

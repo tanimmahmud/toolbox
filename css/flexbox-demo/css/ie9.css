@@ -1,0 +1,34 @@
+/* IE9 does not support Flexbox, so we're falling back to a table layout */
+
+main,
+#main-content {
+  display: block;
+}
+#page {
+  width: 100%;
+  display: table;
+}
+header,
+footer {
+  width: 100%;
+  display: table-row;
+}
+header .inner,
+footer .inner {
+  width: 100%;
+  height: 1px;
+  display: table-cell;
+}
+#main-sidebar {
+  float: left;
+}
+#page-body {
+  overflow: visible;
+}
+body.sidebar #control-bar,
+body.sidebar #page-body {
+  padding-left: 320px; /* sidebar width + padding-left */
+}
+body.sidebar #drawer {
+  margin-left: 320px; /* sidebar width + padding-left */
+}

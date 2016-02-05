@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSS pie chart demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>CSS pie chart demo</h1>
+
+<div class="pie">
+  <div class="wedge"></div>
+  <p>30%</p>
+  <div class="mask"></div>
+</div>
+
+<br>
+<br>
+
+<div class="pie">
+  <div class="wedge"></div>
+  <p>85%</p>
+  <div class="mask"></div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  jQuery(document).ready(function($){
+
+    $('.pie').each(function(index){
+      
+      // Get percent
+      var percent = $(this).find('p').text();
+      percent = percent.replace('%', '');
+      
+      // Calculate degrees
+      var degrees = percent * 3.6;
+      
+      // Add classes
+      $(this).addClass('pie-' + percent);
+
+      if (percent > 50) {
+        $(this).addClass('over-50');
+      }
+      
+      // Generate CSS
+      $('body').append('<style>.pie-' + percent + ' .wedge:after { -webkit-transform: rotate(' + degrees + 'deg); -moz-transform: rotate(' + degrees + 'deg); -ms-transform: rotate(' + degrees + 'deg); transform: rotate(' + degrees + 'deg); }</style>');
+      
+    });
+
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FFF;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: normal;
+  font-size: 87.5%;
+  line-height: 1.35;
+  color: #464646;
+}
+p {
+  margin-bottom: 20px;
+}
+
+/* Primary flexbox */
+
+#page {
+  width: 100%;
+  height: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+header,
+footer {
+  background-color: #CCC;
+}
+header .inner,
+footer .inner {
+  padding: 20px;
+}
+/* This element is both a cell in the primary flexbox as well as the container for the secondary flexbox (see below) */
+main {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+/* Secondary flexbox */
+
+main {
+  /* Firefox hack */
+  /* (see http://stackoverflow.com/questions/29398259/css-flexbox-issue-in-firefox-v36-and-greater) */
+  min-height: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+#main-sidebar {
+  width: 300px;
+  margin-left: -300px;
+  background-color: #999;
+  -webkit-transition: margin-left 0.5s ease-out;
+  -moz-transition:    margin-left 0.5s ease-out;
+  -ms-transition:     margin-left 0.5s ease-out;
+  transition:         margin-left 0.5s ease-out;
+  overflow: auto;
+}
+body.sidebar #main-sidebar {
+  margin-left: 0;
+}
+#main-sidebar p {
+  padding: 20px;
+}
+/* This element is both a cell in the secondary flexbox as well as the container for the tertiary flexbox (see below) */
+#main-content {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+/* Tertiary flexbox */
+
+#main-content {
+  /* Firefox hack */
+  /* (see http://stackoverflow.com/questions/29398259/css-flexbox-issue-in-firefox-v36-and-greater) */
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+#control-bar {
+  padding: 20px;
+  background-color: #666;
+  color: #CCC;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+#page-body {
+  padding: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow: auto;
+}
+#drawer {
+  height: 150px;
+  padding: 20px;
+  margin-bottom: -150px;
+  background-color: #666;
+  color: #CCC;
+  -webkit-transition: margin-bottom 0.5s ease-out;
+  -moz-transition:    margin-bottom 0.5s ease-out;
+  -ms-transition:     margin-bottom 0.5s ease-out;
+  transition:         margin-bottom 0.5s ease-out;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  overflow: auto;
+}
+body.drawer #drawer {
+  margin-bottom: 0;
+}

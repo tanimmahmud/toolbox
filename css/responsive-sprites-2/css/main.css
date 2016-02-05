@@ -1,0 +1,40 @@
+/*
+"Retina" dimensions are used for calculations because they yield more accurate percentages
+Page: 1700px wide
+Shopping cart: 677px by 620px
+Button: 452px by 520px
+*/
+#page {
+  max-width: 850px; /* "Actual" size (half of retina) */
+  margin: 0 auto;
+  background-color: #CCC;
+}
+/* Calculate width of shopping cart in relation to it's parent (page) */
+.shopping-cart {
+  /* Shopping cart width divided by page width, times 100 */
+  width: 39.823529411765%; /* (677 / 1700) * 100 */
+  height: 0;
+  margin: 0 auto;
+  /* Shopping cart height divided by shopping cart width, times above percentage */
+  padding-bottom: 36.47058823529426%; /* (620 / 677) * 39.823529411765 */
+  text-indent: -9999px;
+  overflow: hidden;
+  background: transparent url('../images/shopping-cart@2x.png') no-repeat 0 0;
+  background-size: 100%;
+  display: block;
+}
+/* Calculate width of button in relation to it's parent (shopping cart) */
+.shopping-cart a {
+  /* Button width divided by shopping card width, times 100 */
+  width: 66.765140324963%; /* (452 / 677) * 100 */
+  height: 0;
+  /* Half of button height divided by button width, times above percentage */
+  padding-bottom: 38.40472673559798%; /* (260 / 452) * 66.765140324963 */
+  background: transparent url('../images/shopping-cart-play-button@2x.png') no-repeat 0 0;
+  background-size: 100%;
+  display: block;
+}
+.shopping-cart a:hover,
+.shopping-cart a:focus {
+  background-position: 0 100%;
+}
