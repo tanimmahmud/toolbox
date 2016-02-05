@@ -1,0 +1,7 @@
+# Rewrites the URL by swapping one domain for another
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{HTTP_HOST} ^subdomain.example.com$ [NC]
+  RewriteRule ^(.*)$ http://subdomain.com/$1 [R=301,L]
+</IfModule>

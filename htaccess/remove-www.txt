@@ -1,0 +1,7 @@
+# Removes the www subdomain
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{HTTP_HOST} ^www.example.com$ [NC]
+  RewriteRule ^(.*)$ http://example.com/$1 [R=301,L]
+</IfModule>
