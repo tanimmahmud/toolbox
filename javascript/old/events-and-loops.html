@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Javascript Reference</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<style>
+  #div1, #div2, #div3, #div4, #div5, #div6, #div7, #div8 {
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Javascript Reference</h1>
+<p>Pop open your Javascript console</p>
+<a id="link" href="#">Click me</a>
+
+<hr>
+
+<div id="div1">One</div>
+<div id="div2">Two</div>
+<div id="div3">Three</div>
+<div id="div4">Four</div>
+
+<hr>
+
+<div id="div5">Five</div>
+<div id="div6">Six</div>
+<div id="div7">Seven</div>
+<div id="div8">Eight</div>
+
+<hr>
+
+<div id="bubble-group-outer">
+<div id="bubble-group-inner">
+  <div id="div9">Nine</div>
+  <div id="div10">Ten</div>
+  <div id="div11">Eleven</div>
+  <div id="div12">Twelve</div>
+</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+
+// -----------------------------------------------------------------------------
+// Event dispatching/handling
+// -----------------------------------------------------------------------------
+
+// ----------------------------------
+// Method 1 - Actual Events
+// ----------------------------------
+
+// See https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events
+
+(function(){
+
+  window.Car = Car;
+  
+  function Car(carName) {
+    this.carName = carName;
+    this.drive();
+  }
+
+  Car.prototype.drive = function() {
+    var self = this;
+    window.dispatchEvent(new Event("driving"));
+    window.dispatchEvent(new CustomEvent('drivingCustom', {'detail': self}));
+  };
+
+}(window));
+
+window.addEventListener("driving", function(event) {
+  console.log("A car is driving, but we don't know which one");
+});
+
+window.addEventListener("drivingCustom", function(event) {
+  var car = event.detail;
+  console.log(car.carName + " is driving");
+});
+
+var convertible = new Car("Speedy");
+
+console.log("");
+
+// ----------------------------------
+// Method 2 - Callback Functions
+// ----------------------------------
+
+// See http://stackoverflow.com/questions/17165096/custom-events-in-class
+
+(function(){
+
+  window.Truck = Truck;
+  
+  function Truck(truckName, driveCallback) {
+    this.truckName = truckName;
+    this.driveCallback = driveCallback;
+    this.drive();
+  }
+
+  Truck.prototype.drive = function() {
+    this.driveCallback();
+  };
+
+}(window));
+
+var pickup = new Truck("Rusty", function() {
+  console.log(this.truckName + " is driving");
+});
+
+console.log("");
+
+// -----------------------------------------------------------------------------
+// The "this" Parameter
+// -----------------------------------------------------------------------------
+
+function testFunction() {
+  console.log(this);
+  console.log("");
+}
+
+(function(){
+
+  window.PseudoClass = PseudoClass;
+
+  function PseudoClass() {
+    console.log(this);
+    console.log("");
+  }
+
+}(window));
+
+testFunction();
+testFunction.apply(this);
+
+var obj = {id: "Hello"};
+testFunction.apply(obj);
+
+new PseudoClass();
+
+console.log("");
+
+// -----------------------------------------------------------------------------
+// Loops
+// -----------------------------------------------------------------------------
+
+// Incorrect
+
+var set1 = [
+  document.getElementById("div1"),
+  document.getElementById("div2"),
+  document.getElementById("div3"),
+  document.getElementById("div4")
+];
+
+for (var i = 0; i < set1.length; i++) {
+  var set1Id = set1[i].id;
+
+  set1[i].onclick = function() {
+    console.log(set1Id);
+  };
+}
+
+// Correct
+
+var set2 = [
+  document.getElementById("div5"),
+  document.getElementById("div6"),
+  document.getElementById("div7"),
+  document.getElementById("div8")
+];
+
+function makeHandler(id) {
+  return function() {
+    console.log(id);
+  }
+}
+
+for (var i = 0; i < set2.length; i++) {
+  var set2id = set2[i].id;
+  
+  set2[i].onclick = makeHandler(set2id);
+}
+
+// Event Bubbling
+
+document.getElementById("bubble-group-inner").onclick = function(event) {
+  console.log(event.target);
+  event.stopPropagation();
+};
+
+document.getElementById("bubble-group-outer").onclick = function(event) {
+  console.log(event.target);
+};
+
+</script>
+</body>
+</html>

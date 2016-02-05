@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Functional programming (callbacks)</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Functional Programming
+// (passing callback functions)
+
+// "Constructor" function
+function animal(animalName, animalSound, speakCallback) {
+
+  var name = animalName;
+  var sound = animalSound;
+  var callback = speakCallback;
+
+  function init() {
+    console.log("My name is " + name);
+  }
+
+  function speak() {
+    // Execute the function that was passed to the constructor
+    callback();
+  }
+  
+  // "this" is still "window"
+  // console.log(this);
+
+  init();
+
+  // Public API
+  // (all variables and methods are private unless they're exposed here)
+  return {
+    speak: speak
+  };
+}
+
+// Don’t use the "new" keyword!
+
+var bird = animal("Sandeep", "Tweet", function(){
+  // "this" is still "window"
+  // console.log(this);
+  console.log("I am tweeting");
+});
+bird.speak();
+console.log(bird);
+
+var cat = animal("Molly", "Meow", function(){
+  console.log("I am meowing");
+});
+cat.speak();
+console.log(cat);
+
+bird.speak(); // Hasn't changed
+
+</script>
+</body>
+</html>

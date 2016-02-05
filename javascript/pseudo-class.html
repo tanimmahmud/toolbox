@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pseudo-class</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Pseudo-class
+
+// Constructor method
+function Animal(animalName, animalSound) {
+
+  // Private variable
+  var sound = animalSound;
+
+  // Public variable
+  this.name = animalName;
+
+  // Private method
+  function init() {
+    // console.log(this);
+    console.log("My name is " + this.name);
+  }
+
+  // Public method
+  this.speak = function() {
+    // console.log(this);
+    console.log("My sound is " + sound);
+  };
+
+  // Public method
+  // (Since there's only one copy of the prototype, "sound" will get overridden by each new instance)
+  // Animal.prototype.speak = function() {
+  //   console.log(sound);
+  // };
+  
+  // Call private method
+  // ("this" will be the Animal instance, because we're explicitly passing the scope)
+  init.call(this);
+
+  // Call private method
+  // ("this" will be "window")
+  // init();
+}
+
+// Use the "new" keyword
+
+var bird = new Animal("Sandeep", "Tweet");
+bird.speak();
+console.log(bird.name);
+console.log(bird);
+
+var cat = new Animal("Molly", "Meow");
+cat.speak();
+console.log(cat.name);
+console.log(cat);
+
+bird.speak(); // Hasn't changed
+
+</script>
+</body>
+</html>

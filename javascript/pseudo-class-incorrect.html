@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pseudo-class (incorrect)</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Pseudo-class
+
+/***********************************************************
+ * THIS EXAMPLE HAS AN ISSUE:
+ *
+ * The sound variable is the same for all instances, so
+ * subsequent instances simply override the same variable.
+ ***********************************************************/
+
+// Self-executing function (pass the window object into the closure)
+(function(window) {
+
+  // Make the constructor method available to the global scope
+  window.Animal = Animal;
+
+  // Private variable
+  var sound;
+
+  // Constructor method
+  function Animal(animalName, animalSound) {
+
+    // Public variable
+    this.name = animalName;
+    
+    // Private variable (defined above)
+    sound = animalSound;
+    
+    // Call private method
+    // ("this" will be the Animal object, because we're explicitly passing the scope)
+    init.call(this);
+
+    // Call private method
+    // ("this" will be "window")
+    // init();
+  }
+
+  // Private method
+  function init() {
+    // console.log(this);
+    console.log("My name is " + this.name);
+  }
+  
+  // Public method
+  Animal.prototype.speak = function() {
+    // console.log(this);
+    console.log("My sound is " + sound);
+  };
+
+}(window));
+
+// Use the "new" keyword
+
+var bird = new Animal("Sandeep", "Tweet");
+bird.speak();
+console.log(bird.name);
+console.log(bird);
+
+var cat = new Animal("Molly", "Meow");
+cat.speak();
+console.log(cat.name);
+console.log(cat);
+
+bird.speak(); // Has been overridden by the "cat" instance!
+
+</script>
+</body>
+</html>

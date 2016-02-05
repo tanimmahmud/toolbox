@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Functional programming (inheritance)</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Functional Programming
+// (with inheritance)
+
+// "Constructor" function
+function animal(animalName, animalSound) {
+
+  var name = animalName;
+  var sound = animalSound;
+
+  function init() {
+    console.log("My name is " + name);
+  }
+
+  function speak() {
+    console.log("My sound is " + sound);
+  }
+
+  // "this" is still "window"
+  // console.log(this);
+
+  init();
+
+  // Public API
+  // (all variables and methods are private unless they're exposed here)
+  return {
+    name: name,
+    speak: speak
+  };
+}
+
+// "Constructor" function
+function tiger(animalName, animalSound) {
+
+  // Get an "animal" object
+  var creature = animal(animalName, animalSound);
+
+  // Add a new method to it
+  creature.attack = function() {
+    console.log("Roar!");
+  };
+
+  return creature;
+}
+
+// Don’t use the "new" keyword!
+
+var cat = tiger("Molly", "Meow");
+console.log(cat);
+cat.attack();
+
+var bird = animal("Sandeep", "Tweet");
+console.log(bird);
+bird.attack(); // Throws an error
+
+</script>
+</body>
+</html>

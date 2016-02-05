@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Functional programming (basic)</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Functional Programming
+
+// "Constructor" function
+function animal(animalName, animalSound) {
+
+  var name = animalName;
+  var sound = animalSound;
+
+  function init() {
+    console.log("My name is " + name);
+  }
+
+  function speak() {
+    console.log("My sound is " + sound);
+  }
+  
+  // "this" is still "window"
+  // console.log(this);
+
+  init();
+
+  // Public API
+  // (all variables and methods are private unless they're exposed here)
+  return {
+    name: name,
+    speak: speak
+  };
+}
+
+// Don’t use the "new" keyword!
+
+var bird = animal("Sandeep", "Tweet");
+bird.speak();
+console.log(bird.name);
+console.log(bird);
+
+var cat = animal("Molly", "Meow");
+cat.speak();
+console.log(cat.name);
+console.log(cat);
+
+bird.speak(); // Hasn't changed
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Singleton</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+// Singleton
+
+/**
+ * The “MyApp” variable is assigned to a self-executing function which returns
+ * an object. So "MyApp" ends up referencing the object that the function
+ * returns. Thanks to the magic of closure, the object still has access to
+ * the variables and functions that were defined inside the function that
+ * returned it.
+ */
+
+var MyApp = (function() {
+
+  var secretNumber = 1952;
+
+  function init() {
+    console.log("Initialized");
+  }
+  
+  function getSecretNumber() {
+    console.log(secretNumber);
+  }
+
+  init();
+
+  // Public API
+  // (all variables and methods are private unless they're exposed here)
+  return {
+    getSecretNumber: getSecretNumber
+  };
+
+}());
+
+MyApp.getSecretNumber();
+
+</script>
+</body>
+</html>
