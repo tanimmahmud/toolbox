@@ -1,0 +1,5 @@
+# Older versions of Firefox required this in order to play .ogg videos
+
+AddType video/ogg .ogv
+AddType audio/ogg .oga
+AddType video/mp4 .mp4
